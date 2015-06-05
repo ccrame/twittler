@@ -1,11 +1,47 @@
-.tweet{
-  width: 400px;
-  border: 1px solid gray;
-  padding: 1em;
-  margin: 0 auto;
+body{
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background-color: #5be;
 }
 
 header{
   text-align: center;
-  background-color: #3be;
+  background-color: white;
+  font-size: 3em;
+  color: #5be;
+  margin-bottom: 10px;
 }
+
+.tweet-board div{
+  width: 45%;
+  margin: 0 auto;
+  background-color: white;
+  font: 14px "Helvetica";
+  color: #555;
+}
+
+.name:first-child{
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.message:last-child{
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+ .name{
+  border: 1px solid gray;
+  padding-top: .5em;
+  padding-bottom: 0;
+  border-bottom: none;
+
+ }
+
+ .message{
+   border: 1px solid gray;
+   padding-top: 0;
+   padding-bottom: .5em;
+   border-top: none;
+ }
