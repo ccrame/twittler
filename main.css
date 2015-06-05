@@ -2,7 +2,7 @@ body{
   border: 0;
   padding: 0;
   margin: 0;
-  background-color: #5be;
+  background-color: #8cf;
 }
 
 header{
@@ -13,18 +13,12 @@ header{
   margin-bottom: 10px;
 }
 
-.tweet-board div{
+.tweet-board div {
   width: 45%;
   margin: 0 auto;
   background-color: white;
   font: 14px "Helvetica";
-  color: #555;
-}
-
-.name:first-child{
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
-  border-top: 1px solid gray;
+  padding-left: 50px;
 }
 
 .message:last-child{
@@ -32,18 +26,32 @@ header{
   border-bottom-left-radius: 5px;
 }
 
- .name{
+.name, .new_tweet{
   border: 1px solid gray;
   padding-top: 1em;
   padding-bottom: 0;
+  color: #777;
+  border-top: none;
   border-bottom: none;
-
 }
 
- .message{
+.message{
    border: 1px solid gray;
    padding-top: 0;
    padding-bottom: 2em;
    border-top: none;
-   border-bottom: none;
+   text-indent: 5px;
+   border-bottom: 1px solid gray;
  }
+
+.new-tweet{
+  border: 1px solid gray;
+  border-radius: 5px 5px 0 0;
+}
+
+.tweet-input{
+  border-radius: 0;
+  margin: 1em;
+  width: 80%;
+  font-size: 1em;
+}
