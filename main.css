@@ -2,4 +2,10 @@
   width: 400px;
   border: 1px solid gray;
   padding: 1em;
+  margin: 0 auto;
+}
+
+header{
+  text-align: center;
+  background-color: #3be;
 }

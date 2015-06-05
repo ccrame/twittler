@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  var $body = $('body');
+  var $body = $('.tweets');
   $body.html('');
 
   var index = streams.home.length - 1;
@@ -10,5 +10,6 @@ $(document).ready(function(){
     $tweet.appendTo($body);
     index -= 1;
   }
+  
 
 });
