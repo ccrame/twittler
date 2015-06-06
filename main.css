@@ -30,6 +30,18 @@ header{
   position: relative;
   bottom: 10px;
   font-size: .6em;
+  left: -20px;
+}
+.update{
+  font-size: .25em;
+  background-color: red;
+  color: white;
+  display: inline-block;
+  position: relative;
+  width: 15px;
+  border-radius: 3px;
+  left: -15px;
+  top: -5px;
 }
 
 

@@ -1,10 +1,11 @@
 $(document).ready(function(){
   var body = $('.messages');
-  var index;
+  var index, current;
   var others = function(){
      $('.tweet').html('');
   };
 
+  //function to show elapsed time since post was created
   var postTimeElapsed = function(timeInput){
     var seconds = Math.floor(((new Date).getTime() - timeInput.getTime()) / 1000);
     var minutes = Math.floor(seconds/60);
@@ -28,40 +29,51 @@ $(document).ready(function(){
     } else {
       return 'posted 1 second ago';
     }
-
   };//end of getTime function
 
+
+  //function that loads tweets in the tweets section
   var loadScreen = function(){
-    index = streams.home.length - 1;
+    //current shows numbers of tweets loaded in the page
+    current = index = streams.home.length - 1;
     $('.messages').remove();
     $('.tweet-board').append($('<div class="messages"></div>'));
     while(index >= 0){
       var tweet = streams.home[index];
       var time = postTimeElapsed(tweet.created_at);
-      var block= $('<div class="tweet"></div>')
+      var messageBlock= $('<div class="tweet"></div>')
       var pic = $('<img class="profile picture" src="user.png">');
-      var header = $('<p class="message-header">@' + tweet.user + ' ' + '</p>');
+      var header = $('<p class="message-header">@' + '<a href="#" class="user-info">' + tweet.user + ' </a></p>');
       header.append(time);
       var message = $('<p>' + tweet.message + '</p>');
       //show username and date
-      block.append(pic);
-      block.append(header);
-      block.append(message);
-      $('.messages').append(block);
+      messageBlock.append(pic);
+      messageBlock.append(header);
+      messageBlock.append(message);
+      $('.messages').append(messageBlock);
 
       index-=1;
     }//end of while
   };//end of loadScreen function
-
-var refresh = function(){
   loadScreen();
-  setTimeout(refresh,1000);
-};//end of refresh function
 
-refresh();
+
+  //function to show number of new tweets
+  var newTweets = function(){
+    var newMessages = streams.home.length - 1 - current;
+    if(newMessages > 0){
+      $('.update').remove();
+      $('.logo-container').append('<span class="update"></span>');
+      $('.update').append(newMessages);
+    }
+    setTimeout(newTweets, 1000);
+  }
+  newTweets();
 
 //event handlers
   $('.logo').on('click',function(){
+    $('.update').remove();
+    $('.logo-container').append('<span class="update"></span>');
     loadScreen();
   })
   
