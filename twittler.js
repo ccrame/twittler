@@ -43,7 +43,7 @@ $(document).ready(function(){
       var time = postTimeElapsed(tweet.created_at);
       var messageBlock= $('<div class="tweet"></div>')
       var pic = $('<img class="profile picture" src="user.png">');
-      var header = $('<p class="message-header">@' + '<a href="#" class="user-info">' + tweet.user + ' </a></p>');
+      var header = $('<p class="message-header">@' + '<a href="#" class="user-info" data-user="'+ tweet.user+'">' + tweet.user + ' </a></p>');
       header.append(time);
       var message = $('<p>' + tweet.message + '</p>');
       //show username and date
@@ -54,6 +54,36 @@ $(document).ready(function(){
 
       index-=1;
     }//end of while
+
+    //event handlers
+      $('.user-info').on('click',function(event){
+        event.stopPropagation();
+        event.preventDefault();
+        $('.overlay').css({'left': '0'},'fast');
+        $('.timeline').append('<div class="user-timeline"></div>');
+
+        //create content for user-timeline
+        function test(name){
+          for(var i = streams.home.length - 1; i >= 0; --i){
+            var tweet = streams.home[i];
+            if(tweet.user === name){
+              var time = postTimeElapsed(tweet.created_at);
+              var messageBlock= $('<div class="tweet"></div>');
+              var pic = $('<img class="profile picture" src="user.png">');
+              var header = $('<p class="message-header">@' + tweet.user + '</p>');
+              header.append(time);
+              var message = $('<p>' + tweet.message + '</p>');
+              //show username and date
+              messageBlock.append(pic);
+              messageBlock.append(header);
+              messageBlock.append(message);
+              $('.user-timeline').append(messageBlock);
+            }//end of if
+          }//end of for
+        }
+        test($(this).data('user'));
+        
+      })//end of user-info event 
   };//end of loadScreen function
   loadScreen();
 
@@ -70,11 +100,16 @@ $(document).ready(function(){
   }
   newTweets();
 
-//event handlers
+//event handlers (unaffected by loadScreen function)
   $('.logo').on('click',function(){
     $('.update').remove();
     $('.logo-container').append('<span class="update"></span>');
     loadScreen();
   })
-  
+
+  $('.overlay').on('click',function(){
+    $(this).css({'left':'-9999px'});
+    $('.user-timeline').remove();
+  })
+
 });
